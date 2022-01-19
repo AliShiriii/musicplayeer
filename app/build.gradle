@@ -56,6 +56,9 @@ dependencies {
     //Dexter
     implementation 'com.karumi:dexter:6.2.2'
 
+    //player
+    implementation 'com.gauravk.audiovisualizer:audiovisualizer:0.9.2'
+
     //MultiDex
     implementation "androidx.multidex:multidex:$version_multidex"
 

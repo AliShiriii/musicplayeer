@@ -9,5 +9,20 @@
         android:id="@+id/homeFragment"
         android:name="com.example.musicplayer.view.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_playerFragment"
+            app:destination="@id/playerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="com.example.musicplayer.view.PlayerFragment"
+        android:label="fragment_player"
+        tools:layout="@layout/fragment_player" >
+        <argument
+            android:name="songsName"
+            app:argType="string" />
+        <argument android:name="songsFile" />
+        <argument android:name="position" />
+    </fragment>
 </navigation>

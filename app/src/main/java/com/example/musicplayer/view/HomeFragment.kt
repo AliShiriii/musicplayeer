@@ -1,20 +1,22 @@
 package com.example.musicplayer.view
 
+import android.Manifest
 import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
 import androidx.fragment.app.Fragment
-import com.example.musicplayer.R
+import androidx.navigation.fragment.findNavController
 import com.example.musicplayer.adapter.CustomAdapter
 import com.example.musicplayer.databinding.FragmentHomeBinding
 import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import com.karumi.dexter.listener.single.PermissionListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -27,6 +29,7 @@ class HomeFragment : Fragment() {
 
     companion object {
         var items: ArrayList<String> = ArrayList()
+        var mySongs: ArrayList<File> = ArrayList()
     }
 
     override fun onCreateView(
@@ -50,28 +53,23 @@ class HomeFragment : Fragment() {
     private fun runtimePermission() {
 
         Dexter.withContext(requireContext())
-            .withPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)
-            .withListener(object : PermissionListener {
-                override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
+            .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO)
+            .withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(p0: MultiplePermissionsReport?) {
 
                     displaySongs()
                 }
 
-                override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    TODO("Not yet implemented")
-                }
-
                 override fun onPermissionRationaleShouldBeShown(
-                    p0: PermissionRequest?,
-                    permission: PermissionToken?
+                    p0: MutableList<PermissionRequest>?,
+                    permissionToken: PermissionToken?
                 ) {
-                    permission?.continuePermissionRequest()
 
+                    permissionToken!!.continuePermissionRequest()
                 }
 
 
             }).check()
-
 
     }
 
@@ -102,8 +100,7 @@ class HomeFragment : Fragment() {
     private fun displaySongs() {
 
 
-        val mySongs: ArrayList<File> =
-            findSong(Environment.getExternalStorageDirectory()) as ArrayList<File>
+        mySongs = findSong(Environment.getExternalStorageDirectory()) as ArrayList<File>
 
         items = ArrayList<String>(mySongs.size)
 
@@ -113,9 +110,31 @@ class HomeFragment : Fragment() {
 
         }
 
+        setUpListView()
+    }
+
+    private fun setUpListView() {
         val songsAdapter = CustomAdapter()
 
         binding.recyclerViewSong.adapter = songsAdapter
+        setOnClickListenerOnListView()
+
+    }
+
+    private fun setOnClickListenerOnListView() {
+
+        binding.recyclerViewSong.setOnItemClickListener { adapterView, view, position, l ->
+
+            val songName = binding.recyclerViewSong.getItemAtPosition(position) as String
+
+            val action = HomeFragmentDirections.actionHomeFragmentToPlayerFragment(
+                mySongs.toString(),
+                songName,
+                position.toString()
+            )
+            findNavController().navigate(action)
+
+        }
 
     }
 

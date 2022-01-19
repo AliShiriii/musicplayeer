@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -94,7 +95,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/ic_play" />
+                android:background="@drawable/ic_pause" />
 
             <Button
                 android:id="@+id/nextButton"
@@ -117,23 +118,35 @@
                 />
 
             <Button
+                android:id="@+id/btnff"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/ic_baseline_fast_forward_24"
                 android:layout_marginLeft="15dp"
-                android:id="@+id/btnff"
+                android:layout_marginTop="20dp"
                 android:layout_toRightOf="@id/nextButton"
-                />
+                android:background="@drawable/ic_baseline_fast_forward_24" />
 
             <Button
+                android:id="@+id/btnfr"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/ic_baseline_fast_rewind_24"
                 android:layout_marginRight="15dp"
-                android:id="@+id/btnfr"
                 android:layout_toLeftOf="@id/backButton"
+                android:background="@drawable/ic_baseline_fast_rewind_24" />
+
+            <com.gauravk.audiovisualizer.visualizer.BarVisualizer
+                android:id="@+id/blast"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_alignParentBottom="true"
+                app:avColor="#FF362E"
+                app:avDensity="0.5"
+                app:avSpeed="outline"
+                app:avType="fill"
+                app:avWidth="4dp"
+
+
                 />
         </RelativeLayout>
 
