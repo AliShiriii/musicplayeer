@@ -3,9 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/drawable/ic_back.xml" value="0.2703125" />
+        <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/drawable/ic_baseline_fast_forward_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/drawable/ic_baseline_fast_rewind_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/drawable/ic_next.xml" value="0.2703125" />
+        <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/drawable/ic_pause.xml" value="0.2703125" />
+        <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/drawable/ic_play.xml" value="0.2703125" />
         <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/drawable/list_bg.xml" value="0.2703125" />
         <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/layout/fragment_home.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/layout/fragment_player.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Ali/Desktop/MusicPlayer/app/src/main/res/layout/list_item.xml" value="0.1" />
       </map>
     </option>
