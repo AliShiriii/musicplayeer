@@ -109,7 +109,7 @@ class HomeFragment : Fragment() {
 
         mySongs.forEachIndexed { index, file ->
 
-            items[index] = mySongs.get(index).name.toString().replace(".mp3", "")
+            items[index] = mySongs[index].name.toString().replace(".mp3", "")
 
         }
 
