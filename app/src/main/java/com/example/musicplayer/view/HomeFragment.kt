@@ -1,12 +1,14 @@
-package com.example.musicplayer.application.view
+package com.example.musicplayer.view
 
 import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.widget.*
 import androidx.fragment.app.Fragment
+import com.example.musicplayer.R
+import com.example.musicplayer.adapter.CustomAdapter
 import com.example.musicplayer.databinding.FragmentHomeBinding
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
@@ -16,7 +18,6 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
-import kotlin.collections.arrayListOf as arrayListOf1
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -24,7 +25,9 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private var items = arrayListOf1<String>()
+    companion object {
+        var items: ArrayList<String> = ArrayList()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -96,10 +99,11 @@ class HomeFragment : Fragment() {
     }
 
 
-    private fun displaySongs(){
+    private fun displaySongs() {
 
 
-        val mySongs: ArrayList<File> = findSong(Environment.getExternalStorageDirectory()) as ArrayList<File>
+        val mySongs: ArrayList<File> =
+            findSong(Environment.getExternalStorageDirectory()) as ArrayList<File>
 
         items = ArrayList<String>(mySongs.size)
 
@@ -109,7 +113,7 @@ class HomeFragment : Fragment() {
 
         }
 
-        val songsAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, items)
+        val songsAdapter = CustomAdapter()
 
         binding.recyclerViewSong.adapter = songsAdapter
 
